@@ -3,6 +3,7 @@
 const http = require('http');
 const url = require('url');
 const StringDecoder = require('string_decoder').StringDecoder;
+const config = require('./config');
 
 // O servidor responderá a todas as requisições com uma string
 const server = http.createServer((req, res) => {
@@ -64,8 +65,9 @@ const server = http.createServer((req, res) => {
     });
 });
 
-server.listen(3000, () => {
-    console.log('O servidor está rodando na porta 3000');
+// Escuta a porta de acordo com o ambiente em config.js
+server.listen(config.port, () => {
+    console.log(`O servidor está rodando na porta ${config.port}. O ambiente é ${config.envName}`);
 }); ;
 
 // Define os handlers
